@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160419141339) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "agents", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name",       limit: 50,             null: false
@@ -24,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160419141339) do
     t.datetime "updated_at",                        null: false
   end
 
-  add_index "agents", ["user_id"], name: "index_agents_on_user_id", using: :btree
+  add_index "agents", ["user_id"], name: "index_agents_on_user_id"
 
   create_table "ages", force: :cascade do |t|
     t.string   "value",      limit: 50, null: false
@@ -44,8 +41,8 @@ ActiveRecord::Schema.define(version: 20160419141339) do
     t.datetime "updated_at",                      null: false
   end
 
-  add_index "assets", ["listing_id"], name: "index_assets_on_listing_id", using: :btree
-  add_index "assets", ["media_type_id"], name: "index_assets_on_media_type_id", using: :btree
+  add_index "assets", ["listing_id"], name: "index_assets_on_listing_id"
+  add_index "assets", ["media_type_id"], name: "index_assets_on_media_type_id"
 
   create_table "availabilities", force: :cascade do |t|
     t.string   "value",      limit: 50, null: false
@@ -72,7 +69,7 @@ ActiveRecord::Schema.define(version: 20160419141339) do
     t.datetime "updated_at",                                                       null: false
   end
 
-  add_index "branches", ["agent_id"], name: "index_branches_on_agent_id", using: :btree
+  add_index "branches", ["agent_id"], name: "index_branches_on_agent_id"
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -87,8 +84,8 @@ ActiveRecord::Schema.define(version: 20160419141339) do
     t.datetime "updated_at",                   null: false
   end
 
-  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
-  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
   create_table "departments", force: :cascade do |t|
     t.string   "value",      limit: 50, null: false
@@ -103,7 +100,7 @@ ActiveRecord::Schema.define(version: 20160419141339) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "features", ["listing_id"], name: "index_features_on_listing_id", using: :btree
+  add_index "features", ["listing_id"], name: "index_features_on_listing_id"
 
   create_table "flags", force: :cascade do |t|
     t.integer  "listing_id"
@@ -112,7 +109,7 @@ ActiveRecord::Schema.define(version: 20160419141339) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "flags", ["listing_id"], name: "index_flags_on_listing_id", using: :btree
+  add_index "flags", ["listing_id"], name: "index_flags_on_listing_id"
 
   create_table "frequencies", force: :cascade do |t|
     t.string   "value",      limit: 50, null: false
@@ -164,16 +161,16 @@ ActiveRecord::Schema.define(version: 20160419141339) do
     t.datetime "updated_at",                                                                   null: false
   end
 
-  add_index "listings", ["age_id"], name: "index_listings_on_age_id", using: :btree
-  add_index "listings", ["availability_id"], name: "index_listings_on_availability_id", using: :btree
-  add_index "listings", ["branch_id"], name: "index_listings_on_branch_id", using: :btree
-  add_index "listings", ["department_id"], name: "index_listings_on_department_id", using: :btree
-  add_index "listings", ["frequency_id"], name: "index_listings_on_frequency_id", using: :btree
-  add_index "listings", ["qualifier_id"], name: "index_listings_on_qualifier_id", using: :btree
-  add_index "listings", ["sale_type_id"], name: "index_listings_on_sale_type_id", using: :btree
-  add_index "listings", ["style_id"], name: "index_listings_on_style_id", using: :btree
-  add_index "listings", ["tenure_id"], name: "index_listings_on_tenure_id", using: :btree
-  add_index "listings", ["type_id"], name: "index_listings_on_type_id", using: :btree
+  add_index "listings", ["age_id"], name: "index_listings_on_age_id"
+  add_index "listings", ["availability_id"], name: "index_listings_on_availability_id"
+  add_index "listings", ["branch_id"], name: "index_listings_on_branch_id"
+  add_index "listings", ["department_id"], name: "index_listings_on_department_id"
+  add_index "listings", ["frequency_id"], name: "index_listings_on_frequency_id"
+  add_index "listings", ["qualifier_id"], name: "index_listings_on_qualifier_id"
+  add_index "listings", ["sale_type_id"], name: "index_listings_on_sale_type_id"
+  add_index "listings", ["style_id"], name: "index_listings_on_style_id"
+  add_index "listings", ["tenure_id"], name: "index_listings_on_tenure_id"
+  add_index "listings", ["type_id"], name: "index_listings_on_type_id"
 
   create_table "media_types", force: :cascade do |t|
     t.string   "value",      limit: 50, null: false
@@ -235,9 +232,9 @@ ActiveRecord::Schema.define(version: 20160419141339) do
     t.string   "api_token",              limit: 100
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
 
 end
